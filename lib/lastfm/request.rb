@@ -12,10 +12,15 @@ module Lastfm
 
     class << self
 
-      def get(path)
-        @connection.get(path)
+      def get(method, artist)
+        @connection.get do |req|
+          req.url '/2.0/'
+          req.params['method'] = method
+          req.params['artist'] = artist
+          req.params['format'] = 'json'
+          req.params['api_key'] = Lastfm.api_key
+        end
       end
-      
     end
   end
 end

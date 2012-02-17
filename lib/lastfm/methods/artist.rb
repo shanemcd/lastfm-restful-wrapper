@@ -1,5 +1,5 @@
-require_relative '../request.rb'
-require_relative '../base.rb'
+require File.join(Dir.pwd, '/lastfm/base.rb')
+require File.join(Dir.pwd, '/lastfm/request.rb')
 
 module Lastfm
   class Artist < Lastfm::Base
@@ -8,14 +8,12 @@ module Lastfm
     class << self
 
       def build_url(method, artist)
-        Lastfm::Request.get(method, artist)
+        Lastfm::Request.get(method, "artist")
       end
 
       def get_similar(artist)
         build_url "artist.getsimilar", artist
       end
-
-      
 
     end
   end

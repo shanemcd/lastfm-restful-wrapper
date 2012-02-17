@@ -1,8 +1,11 @@
 module Lastfm
   class Base
 
-    def artist_method_without_out(method, artist)
-
+    # Generate methods that dont require auth
+    def methods_without_auth(*attrs)
+      attrs.each do |attr|
+        
+      end
     end
 
   end

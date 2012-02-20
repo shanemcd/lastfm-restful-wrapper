@@ -16,9 +16,9 @@ module Lastfm
           req.url '/2.0/'
           req.params['method'] = method
           # Change this to be whatever API method is called
-          req.params['artist'] = specifier
-          req.params['format'] = 'json'
+          req.params[method.split(".")[0]] = specifier
           req.params['api_key'] = Lastfm.api_key
+          req.params['format'] = 'json'
         end
       end
     end

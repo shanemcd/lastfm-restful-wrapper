@@ -18,6 +18,7 @@ module Lastfm
         token = response['token']
         Launchy.open("http://www.last.fm/api/auth/?api_key=#{Lastfm.api_key}&token=#{token}")
       end
+      
     end
   end
 end

@@ -7,10 +7,14 @@ module Lastfm
 
     DEFAULT_SECRET = nil
 
+    DEFAULT_CALLBACK = "http://localhost:9393/auth/lastfm/callback"
+
     CONFIGURATION_KEYS = [
       :api_key,
       :api_secret,
-      :api_root
+      :api_root,
+      :auth_uri,
+      :callback
     ]
 
     attr_accessor *CONFIGURATION_KEYS
@@ -39,6 +43,7 @@ module Lastfm
       self.api_key = DEFAULT_KEY
       self.api_secret = DEFAULT_SECRET
       self.api_root = API_ROOT
+      self.callback = DEFAULT_CALLBACK
     end
   end
 end

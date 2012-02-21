@@ -14,6 +14,14 @@ module Lastfm
       end
     end
 
+    def self.artist_methods_without_auth(*attrs)
+      attrs.each do |attr|
+        define_singleton_method attr do |artist|
+          build_url "artist.#{attr}", artist
+        end
+      end
+    end
+
     def self.user_methods_without_auth(*attrs)
       attrs.each do |attr|
         define_singleton_method attr do |user|

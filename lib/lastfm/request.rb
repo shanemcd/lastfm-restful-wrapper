@@ -21,6 +21,16 @@ module Lastfm
           req.params['format'] = 'json'
         end
       end
+
+      def get_authed
+        response = @connection.get do |req|
+          req.url '/2.0/'
+          req.params['method'] = "auth.gettoken"
+          req.params['api_key'] = Lastfm.api_key
+          req.params['format'] = "json"
+        end
+        response = response.body
+      end
     end
   end
 end

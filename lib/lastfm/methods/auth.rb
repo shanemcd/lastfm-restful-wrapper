@@ -13,10 +13,6 @@ module Lastfm
         Digest::MD5.hexdigest("api_key#{key}methodauth.getSessiontoken#{token}#{secret}")
       end
 
-      def build_url(method, artist)
-        Lastfm::Request.get(method, artist)
-      end
-
       def get_token
         response = Lastfm::Request.get_authed
         @token = response.body['token']

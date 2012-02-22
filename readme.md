@@ -10,6 +10,7 @@ Experiments with the Last.fm API. Using Faraday for HTTP requests.
 
     Lastfm::Artist.getsimilar("Heartless Bastards")
 
-####To-do:
-- Make     define_method better.
-- Finish up the auth process
+Authentication:
+
+    Lastfm::Auth.get_token
+    Lastfm::Auth.get_session

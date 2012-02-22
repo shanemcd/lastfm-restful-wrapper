@@ -28,8 +28,6 @@ module Lastfm
         key = Lastfm.api_key
         secret = Lastfm.api_secret
         signature = make_signature(key, @token, secret)
-        puts @token
-        puts signature
         Lastfm::Request.get_session(key, @token, signature)
       end       
     end

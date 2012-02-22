@@ -9,16 +9,29 @@ module Lastfm
 
     class << self
 
+      def make_signature(key, token, secret)
+        Digest::MD5.hexdigest("api_key#{key}methodauth.getSessiontoken#{token}#{secret}")
+      end
+
       def build_url(method, artist)
         Lastfm::Request.get(method, artist)
       end
 
-      def authorize
+      def get_token
         response = Lastfm::Request.get_authed
-        token = response['token']
-        Launchy.open("http://www.last.fm/api/auth/?api_key=#{Lastfm.api_key}&token=#{token}")
+        @token = response.body['token']
+        Launchy.open("http://www.last.fm/api/auth/?api_key=#{Lastfm.api_key}&token=#{@token}")
+        return @token
       end
-      
+
+      def get_session
+        key = Lastfm.api_key
+        secret = Lastfm.api_secret
+        signature = make_signature(key, @token, secret)
+        puts @token
+        puts signature
+        Lastfm::Request.get_session(key, @token, signature)
+      end       
     end
   end
 end

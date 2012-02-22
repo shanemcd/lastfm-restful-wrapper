@@ -7,6 +7,7 @@ module Lastfm
       builder.use Faraday::Request::UrlEncoded   
       builder.use Faraday::Adapter::NetHttp
       builder.use Faraday::Response::ParseJson
+      builder.use Faraday::Response::Logger
     end
 
     class << self
@@ -29,8 +30,19 @@ module Lastfm
           req.params['api_key'] = Lastfm.api_key
           req.params['format'] = "json"
         end
-        response = response.body
       end
+
+      def get_session(key, token, signature)
+        response = @connection.get do |req|
+          req.url '/2.0/'
+          req.params['method'] = "auth.getSession"
+          req.params['api_key'] = key
+          req.params['token'] = token
+          req.params['api_sig'] = signature
+          req.params['format'] = "json"
+        end
+      end
+
     end
   end
 end

@@ -5,7 +5,7 @@ module Lastfm
   class User < Lastfm::Base
     include Lastfm::Request
 
-    user_methods_without_auth :getinfo, :getfriends, :get, :getlovedtracks
+    methods_without_auth :getinfo, :getfriends, :get, :getlovedtracks
 
     class << self
 

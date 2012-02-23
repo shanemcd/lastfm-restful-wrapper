@@ -5,7 +5,9 @@ module Lastfm
   class Artist < Lastfm::Base
     include Lastfm::Request
 
-    artist_methods_without_auth :getsimilar, :getinfo, :getshouts, :gettags, :gettoptags
+    # artist_methods_without_auth :getsimilar, :getinfo, :getshouts, :gettags, :gettoptags
+
+    methods_without_auth :getsimilar, :getinfo, :getshouts, :gettags, :gettoptags
 
     class << self
 
